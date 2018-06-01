@@ -1,0 +1,129 @@
+@import "../common/detail-common";
+.work-time{
+    left: .12rem;
+    color: #272727;
+    font-size: .13rem;
+    background: #fff;
+    padding:.01rem .12rem .01rem .12rem;
+    vertical-align: middle;
+    .icon-time1 {
+        margin-right: .07rem;
+        font-size: .14rem;
+        &::before {
+            color: #C2CCD0;
+        }
+    }
+    .name {
+        color: #345791;
+        font-weight: bold;
+    }
+}
+.work-repeat{
+    left: .12rem;
+    color: #272727;
+    font-size: .13rem;
+    background: #fff;
+    padding:.01rem .12rem .01rem .12rem;
+    .icon-time1 {
+        margin-right: .1rem;
+        font-size: .14rem;
+        vertical-align: middle;
+        &::before {
+            color: #C2CCD0;
+        }
+    }
+    .name {
+        color: #345791;
+        font-weight: bold;
+    }
+}
+.work-state{
+    color: #889AA4;
+    background: #fff;
+    // padding: .18rem .10rem .18rem .12rem;
+    position: relative;
+    text-align: center;
+    .work-complete-btn{
+        height: .30rem;
+        display: inline-block;
+        line-height: .30rem;
+        width: .80rem;
+        font-size: .14rem;
+        color: #fff;
+        background-color: #4598F0;
+        border-radius: .04rem;
+        border: none;
+    }
+    .work-complete-btn-s{
+        color: #ffffff;
+        background-color: #4598F0;
+    }
+}
+
+.detail-bottom{
+    height:.44rem;
+    background: #F8F9FB;
+}
+
+// 完成确认弹窗
+.check-confirm-popup{
+    .popup-wrap{
+        width:2.67rem;
+    }
+    .popup-title{
+        padding:.16rem 0 !important;
+        text-align: center;
+        font-size: .16rem;
+    }
+    .work-wrap{
+        position: relative;
+        height: 100%;
+    }
+    .work-content{
+        max-height: 0.8rem;
+        line-height: .2rem;
+        padding-bottom: .16rem;
+        width:2.43rem;
+        margin:0 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: .14rem;
+        box-sizing: content-box;
+        &.center{
+            text-align: center;
+        }
+    }
+    .work-check-btns{
+        width: 100%;
+        display: flex;
+        height: .45rem;
+        align-items: center;
+        border-top:.5px solid #EEEFF5;
+        span{
+            display: block;
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-align: center;
+            &:first-child{
+                border-right: .5px solid #EEEFF5;
+            }
+            font-size: .16rem;
+            &:active{
+                opacity: .5;
+            }
+        }
+    }
+}
+
+/**
+ * 打开日程详情c长按选择功能，外层也打开为了解决在安卓设备无法取消选中情况
+ */
+.work-text, .work-text span {
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    -o-user-select: text;
+}

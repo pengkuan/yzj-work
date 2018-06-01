@@ -1,0 +1,111 @@
+@import "../common/detail-common";
+.meeting-loc,
+.work-time,
+.work-creater{
+    left: .12rem;
+    color: #272727;
+    font-size: .13rem;
+    background: #fff;
+    padding:.01rem .16rem .01rem .16rem;
+    vertical-align: middle;
+    .iconfont{
+        margin-right: .08rem;
+        color: #C2CCD0;
+        font-size: .14rem;
+    }
+}
+
+.work-time{
+    .iconfont{color:#C2CCD0;}
+    span{
+        color: #272727;
+    }
+    &.outdated{color:#F55147 !important;}
+}
+
+.detail-bottom{
+    height:.44rem;
+    background: #F8F9FB;
+}
+
+.meeting-icon{
+    font-size: .12rem;
+    display: inline-block;
+    text-align: center;
+    color: #1d1d1d;
+    width: .38rem;
+    border: 1px solid #1d1d1d;
+    border-radius: .02rem;
+    margin-right: .06rem;
+    line-height: .2rem;
+}
+.work-text span{
+    vertical-align: middle;
+}
+
+.work-remind {
+    //margin:0 .17rem;
+    display: flex;
+    background: #ffffff;
+    position: relative;
+    padding:.22rem .17rem;
+    overflow: hidden;
+    &::after{
+        content: '';
+        //height: 1px;
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        color:#E6E8EE;
+        border-bottom: solid 1px #E6E8EE;
+        //-webkit-transform-origin: 100% 0;
+        //transform-origin: 100% 0;
+        //-webkit-transform: scaleY(.5);
+        //transform: scaleY(.5);
+        width:92%;
+        text-align: center;
+    }
+
+    .commitBtn{
+        display: inline-block;
+        width: 1.18rem;
+        height: .30rem;
+        line-height: .30rem;
+        background: #4598F0;
+        border: none;
+        color: #fff;
+        border-radius: .04rem;
+        text-align: center;
+        margin:.02rem auto;
+        font-size: .14rem;
+        &:active{
+            background: rgba(69, 152, 240, .5);
+            opacity:.5;
+        }
+    }
+    .mr-first{
+        color:#4598F0;
+        border:solid 1px #4598F0;
+        //&:active {
+        //    background: rgba(69,152,240, .5);
+        //    opacity:.5;
+        //}
+    }
+    .remain-time{
+        flex: 1;
+    }
+}
+
+.nm-start{
+    padding: 0 .17rem;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        color: #ffffff;
+        border-bottom: solid 1px #ffffff;
+        width: 92%;
+        text-align: center;
+    }
+}

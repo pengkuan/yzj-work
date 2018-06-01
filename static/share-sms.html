@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>时间助手</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" href="./share-sms.css">
+        <script type="text/javascript">
+            (function () {
+                var dpr = window.devicePixelRatio;
+                if (dpr >= 1.5) {
+                    dpr = 2;
+                }
+                document.documentElement.setAttribute('data-dpr', dpr);
+                var userAgent = navigator.userAgent;
+                if (userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || userAgent.match(/Android/i)) {
+                    var fontSize = document.documentElement.clientWidth / 7.5 * 2;
+                    if (fontSize > 150) {
+                        fontSize = 150;
+                    }
+                    return document.documentElement.style.fontSize = fontSize + 'px';
+                }
+                document.documentElement.style.fontSize = '100px';
+            })();
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="header">
+                <img src="./assets/sms/default-icon.png" class="logo">
+                <p class="desc">小云邀请你参加会议</p>
+                <p class="content">小云邀请你参加会议</p>
+            </div>
+            <div class="infos">
+                <div class="task-item">
+                    <span class="label">来自</span><span>云之家</span>
+                </div>
+                <div class="task-item">
+                    <span class="label">时间</span><span>5月30日 14:00 — 17:00</span>
+                </div>
+                <div class="task-item">
+                    <span class="label">地点</span><span>xxx办公楼·一楼报告厅</span>
+                </div>
+                <div class="task-item {{showActors}}">
+                    <span class="label">与会人</span><span>20人</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="#" class="btn">打开云之家</a>
+            <i class="company-logo"></i>
+        </div>
+        <textarea id="tpl">
+            <div class="header">
+                <img src="./assets/sms/default-icon.png" class="logo">
+                <p class="desc">{{desc}}</p>
+                <p class="content">{{content}}</p>
+            </div>
+            <div class="infos">
+                <div class="task-item">
+                    <span class="label">来自</span><span>{{personName}}</span>
+                </div>
+                <div class="task-item">
+                    <span class="label">时间</span><span>{{timerRange}}</span>
+                </div>
+                <div class="task-item {{showPlace}}">
+                    <span class="label">地点</span><span>{{meetingPlace}}</span>
+                </div>
+                <div class="task-item {{showActors}}">
+                    <span class="label">{{personTypes}}</span><span>{{actorCounts}}人</span>
+                </div>
+            </div>
+        </textarea>
+        <script type="text/javascript">
+        window.onunload = function () {};
+        (function() {
+            var ua = navigator.userAgent;
+            var $$ = function (selector) {
+                return document.querySelector(selector)
+            };
+            // 检测正则
+            var regs = {
+                'IS_IOS_REG': /\b(?:iPad|iPhone|iPod)\b.*? OS ([\d_]+)/,
+                'IS_ANDROID_REG': /\bAndroid([^;]+)\b/
+            }
+            // 一些配置项
+            var utils = {
+                isIos: regs.IS_IOS_REG.test(ua),
+                isAndroid: regs.IS_ANDROID_REG.test(ua),
+                universialLink: regs.IS_IOS_REG.test(ua) ? parseInt(RegExp.$1, 10) >= 9 : false,
+                schemalUrl: 'cloudhub://start?',
+                downloadUrl: 'https://www.yunzhijia.com/home/?m=open&a=download',
+                universialLinker: 'https://do.yunzhijia.com/yzjapp/dispatch?function=start'
+            }
+            // 格式化时间
+            function dateFormat(date, fmt) {
+                var daysInWeek = '日一二三四五六'
+                var o = {
+                    'M+': date.getMonth() + 1,
+                    'd+': date.getDate(),
+                    'E': '周' + daysInWeek[date.getDay()],
+                    'H+': date.getHours(),
+                    'm+': date.getMinutes()
+                };
+                if (/(y+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+                }
+                for (var k in o) {
+                    if (new RegExp('(' + k + ')').test(fmt)) {
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+                    }
+                }
+                return fmt;
+            }
+
+            function initCallApp () {
+                var downloadBtn = $$('.btn');
+                if (!utils.isIos && !utils.isAndroid) {  // 不是ios和android 直接跳转到“下载页”
+                    downloadBtn.setAttribute('href', utils.downloadUrl)
+                } else if (utils.isIos && utils.universialLink) { // ios9及其以上系统可以使用universialLink
+                    downloadBtn.setAttribute('href', utils.universialLinker)
+                } else { // android和ios9以下的系统，采用html5唤起app的方式来尝试
+                    downloadBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.returnValue = false;
+                        callApp();
+                        return false;
+                    }, false);
+                }
+            }
+            // 尝试唤起app。如果唤起失败，进入下载页面
+            function callApp () {
+                var callStartTime = Date.now();
+                // 使用iframe唤起app
+                var doc = document;
+                var ifr = doc.createElement('iframe');
+                ifr.setAttribute('style', 'display: none');
+                ifr.setAttribute('src', utils.schemalUrl);
+                doc.body.appendChild(ifr);
+                setTimeout(function () {
+                    doc.body.removeChild(ifr);
+                    // 唤起app成功，页面切到后台
+                    if (document.hidden || document.webkitHidden) {
+                        return;
+                    }
+                    if (Date.now() - callStartTime < (1500 + 200)) {
+                        location.href = utils.downloadUrl
+                    }
+                }, 1500);
+            }
+            // ajax请求
+            function ajax (url, params) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var result = xhr.responseText;
+                            try {
+                                result = JSON.parse(result);
+                            } catch (e) {
+                                result = {};
+                                console.log(e);
+                            }
+                            if (!result.success) {
+                                alert('小云开小差了，请稍后重试！');
+                                return;
+                            }
+                            params.success(result.data || {});
+                        }
+                    }
+                };
+                xhr.open(params.method, url);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+                xhr.send(JSON.stringify(params.data));
+            }
+            function getTaskTimeRange (st, et) {
+                var dateFormater = 'M月d日 HH:mm'
+                var dayMills = 1000 * 60 * 60 * 24
+                st = new Date(+st);
+                et = new Date(+et);
+                if((et - st >= dayMills) || (st.getDate() !== et.getDate())) {
+                    return dateFormat(st, dateFormater) + ' - ' + dateFormat(et, dateFormater)
+                }
+                return dateFormat(st, dateFormater) + ' - ' + dateFormat(et, 'HH:mm')
+            }
+            function getSmsTitle (workType, personName) {
+                var titleMap = {
+                    task: '来自' + personName + '的日程',
+                    meeting: personName + '的会议'
+                }
+                return titleMap[workType]
+            }
+            // 获取url参数
+            function getParams() {
+                var result = {};
+                var loc = window.location;
+                var params = loc.search.slice(1);
+                params = params.split('&');
+                if (params && params.length) {
+                    for (var i = 0, ln = params.length; i < ln; i++) {
+                        var keyVal = params[i].split('=');
+                        if (keyVal && keyVal.length) {
+                            result[keyVal[0]] = keyVal[1];
+                        }
+                    }
+                }
+                return result
+            }
+
+            var params = getParams();
+            // var title = (params.workType || 'task') === 'task' ? '日程详情' : '会议详情';
+            // document.querySelector('title').innerHTML = title
+            var urls = {
+                'task': '/cloudwork/work/getworkbyid',
+                'meeting': '/cloudwork/meeting/queryMeetingById'
+            };
+            var defaultUrl = urls.task;
+            var data = {
+                id: params.id,
+                meetingId: params.id
+            };
+            initCallApp();
+            ajax(urls[params.workType] || defaultUrl, {
+                method: 'post',
+                data: data,
+                success: function (result) {
+                    result = result || {};
+                    result.personTypes = '协作人';
+                    if (params.workType === 'meeting') {
+                        result.personTypes = '与会人';
+                    }
+                    result.desc = getSmsTitle(params.workType || 'task', result.personName)
+                    if (params.workType === 'meeting' && result.meetingPlace) {
+                        result.showPlace = ''
+                    } else {
+                        result.showPlace = 'hide'
+                    }
+                    result.timerRange = getTaskTimeRange(result.startDate, result.endDate);
+                    if (result.actorPersons && result.actorPersons.length) {
+                        result.showActors = ''
+                        result.actorCounts = result.actorPersons.length
+                    } else {
+                        result.showActors = 'hide'
+                        result.actorCounts = 0
+                    }
+
+                    var tplNode = $$('#tpl');
+                    var tpl = tplNode.value;
+                    tpl = tpl.replace(/{{(\w+?)}}/g, function (_match, $1) {
+                        return result[$1] || _match;
+                    })
+                    document.body.removeChild(tplNode);
+                    $$('#main').innerHTML = tpl;
+                    $$('.footer').setAttribute('style', 'display: "";');
+                }
+            });
+        })()
+        </script>
+    </body>
+</html>

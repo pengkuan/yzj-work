@@ -1,0 +1,125 @@
+.wrapper{
+    height: 100%;
+}
+.my-work{
+    // background:#F8F9FB;
+    height: 100%;
+}
+.empty-list{
+    text-align: center;
+    margin-bottom:1.2rem;
+    i, span{
+        display: block;
+    }
+    i{
+        width:.82rem;
+        margin:0rem auto .24rem;
+        padding-top: .9rem;
+    }
+    span{
+        color: #768893;
+        line-height:20px
+    }
+}
+
+.empty-work{
+    padding-top: .16rem;
+    padding-bottom: .3rem;
+    text-align: center;
+    font-size: .14rem;
+    .default-icon {
+        display: block;
+        width: 2.65rem;
+        margin: 0 auto;
+    }
+    .default-text {
+        padding-top: .16rem;
+        color: #768893;
+        line-height: .2rem;
+    }
+    .create-schedule {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        align-items: center;
+        margin: .13rem auto 0;
+        width: 1.18rem;
+        height: .35rem;
+        color: #4598f0;
+        &:active {
+            opacity: .5;
+            background-color: #f7f8f9;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            border: 1px solid #4598f0;
+            border-radius: .04rem;
+            transform: scale(.5) translate(-50%, -50%);
+        }
+    }
+}
+
+.show-done-btn{
+    width:3rem;
+    height:.36rem;
+    line-height: .36rem;
+    background-color:#F8F9FB;
+    margin:.24rem auto;
+    text-align: center;
+    border-radius:1rem;
+    border:.5px solid #EEF0F6;
+    &:active{
+        opacity: .5;
+    }
+}
+
+.picker-item{
+    padding:0 .06rem;
+}
+
+.ie-less9{
+    color:#768893;
+    text-align: center;
+    line-height: .2rem;
+    span{
+        display: block;
+        text-align: center;
+        width:.88rem;
+        margin:.66rem auto .24rem;
+    }
+    i{
+        color:#4598F0;
+    }
+}
+
+/*
+*  禁止长按复制和气泡
+*/
+*{
+
+  -webkit-touch-callout:none;
+
+  -webkit-user-select:none;
+
+  -khtml-user-select:none;
+
+  -moz-user-select:none;
+
+  -ms-user-select:none;
+
+  user-select:none;
+
+  -o-user-select:none;
+
+  }
+  input,textarea {
+    -webkit-user-select:auto; /*webkit浏览器*/
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+  }

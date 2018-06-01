@@ -1,0 +1,130 @@
+@import "./base.css";
+@import "./iconfont.css";
+
+.clear:after{
+    content:'';
+    display: block;
+    clear: both;
+}
+
+.spliter{
+    height: .08rem;
+    background:#F8F9FB;
+}
+
+// vue 动画
+.slide-enter-active,
+.slide-leave-active{
+    transition: all .3s;
+    transform: translateY(0);
+    opacity:1;
+}
+
+.slide-enter,
+.slide-leave-to{
+    transform: translateY(50%);
+    opacity: 0;
+}
+
+.msn-enter-active,
+.msn-leave-active{
+    opacity: 0;
+    height: 0;
+}
+.msn-enter，.msn-leave-to{
+    opacity:1;
+    height: .6rem;
+}
+
+.fadeout{
+    opacity: 0;
+    height: 0 !important;
+    overflow: hidden;
+}
+
+.fadeIn{
+    animation: .3s fadeIn;
+}
+.fade-enter-active{
+    transition:all .3s;
+    opacity: 1;
+}
+.fade-enter{
+    opacity: 0;
+}
+
+.fade-slow-enter-active{
+    transition:all 1s;
+    opacity: 1;
+}
+.fade-slow-enter{
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; height:0; }
+    50% { opacity: .5; height: .3rem;}
+    to { opacity: 1; height: .6rem;}
+}
+
+// tips
+.operate-tip {
+    position: fixed;
+    width: 100%;
+    top: 40%;
+    width: 200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+    z-index: 100;
+    .tip-content {
+        background:rgba(70, 73, 88, 1);
+        background: #464958;
+        border-radius: 4px;
+        padding: .08rem .2rem;
+        color: #fff;
+        margin: 0 auto;
+        max-width: 3rem;
+        font-size: .14rem;
+        display: inline-block;
+        text-align: left;
+        .success {
+            display: inherit;
+            vertical-align: text-top;
+            // display: table;
+            width: .13rem;
+            height: .13rem;
+            margin-right: .08rem;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAABJUlEQVQoU42SwUqCQRDHf3+D6BBY0C2I6BSEWk+QXbuETyCeU6wnyN7A0O76BOkDhAqdumR+BJ3KQxFBBxGCLjWxX274hWJz2dnd+c38Z3bFmFUC0kARIy1pycwGiDZwVkiEa2jyTiWgLFQcTxLxzcr5JMe/ULVHDSk7FfAXZrV8kpycJKHWTGAUYNieqj0aSAfToPlYnNXFNI/D5k+IWdNBA6T4JMgBmY0Wz+8drl7CdhzUVzWQeWB/7YKHYYP7QR0PvH3ccvmUi+R0PXWFUu50ZSFFZqPN9WuJzeUskwDDOk5eZHIedBX/VhjJq+v8jm370s1/p6eY7YSPWwkoCZ3MAg07LSRc7MhmgR6IfCO3CaV+cmRiXWg3bNroa47y4RZdX+AbiDJzPCdwLFYAAAAASUVORK5CYII=) no-repeat;
+            background-size: cover;
+        }
+        .failure {
+            display: inherit;
+            vertical-align: text-top;
+            width: .13rem;
+            height: .13rem;
+            margin-right: .08rem;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAA/UlEQVQoU41SMVbCUBCcSVow3sAjiDfAE9j+/y18XsBoqY3YaBs8ARSElHoCuYHxBhwhEVoyvkSDGOCZX+37u7Mzs7vExlsY01+RIYg+gUMBGYSZLw27STKrS1kHubURiHCzyZ9YiILp9Kb8q0C5NSOQF3sB64RGQZxcspRUeHxrArrDZyzCq60+XqFT5s68ADxrZg8mMT7P3Q5yvTJzdk7gqC1I0py5s9rlZT8TwMyalORxW0+SPth+cj9tpTGXzvVW0HuTqfP4hOXd7ZZyHzz53pMzA4D3Lfb0EMTJ4Pci/gWqAqwvomaopKq4FtArh1OZBlKfXtSJ47Su+wLHi2fyF8os9gAAAABJRU5ErkJggg==) no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+.border-t {
+    background: -webkit-linear-gradient(top,#EEEFF5,#EEEFF5 50%,transparent 0);
+    background-size: 120% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.border-b {
+    background: -webkit-linear-gradient(bottom,#EEEFF5,#EEEFF5 50%,transparent 0);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+}
+
+// 禁止长按图片弹出保存到手机
+img {
+    pointer-events: none;
+}

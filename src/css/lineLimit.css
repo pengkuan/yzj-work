@@ -1,0 +1,29 @@
+/*文字*/
+.msg-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  text-align: left;
+  overflow: hidden;
+  max-height: .6rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  line-height: .2rem;
+}
+
+
+.line-limit-nine{
+   display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    text-overflow: ellipsis;
+    text-align: left;
+    overflow: hidden;
+    max-height: 1.8rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    line-height: .2rem;
+}

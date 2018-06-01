@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+        window.timePoints = {htmlStart: Date.now()}
+    </script>
+    <meta charset="utf-8">
+    <title>时间助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' 172.20.226.55:8800
+        localhost:* 
+        192.168.22.144 
+        192.168.1.49 
+        http://devtest.kdweibo.cn
+        https://kdtest.kdweibo.cn 
+        http://dotest.kdweibo.cn 
+        https://dotest.kdweibo.cn 
+        http://yunzhijia.com 
+        http://www.yunzhijia.com 
+        https://www.yunzhijia.com 
+        https://static.yunzhijia.com 
+        127.0.0.1:8800
+        172.20.226.58:8800
+        172.20.226.67:8800
+        172.20.226.61:8800
+        172.20.226.53:8800
+        172.20.226.79:8800
+        172.20.226.32:8800
+        172.20.226.17:8800
+        172.20.226.31:8800
+        172.20.226.72:8800
+        172.20.226.92:8800
+        172.20.226.74:8800
+        172.20.226.105:8800
+        172.20.226.104:8800
+        172.20.226.103:8800
+        172.20.215.101:8800
+        172.20.226.93:8800
+        172.20.226.88:8800
+        172.20.226.64:8800
+        172.20.226.4:8800">-->
+    <script>
+        (function () {
+            var dpr = window.devicePixelRatio;
+            var fontSize;
+            if (dpr >= 1.5) dpr = 2;
+            document.documentElement.setAttribute('data-dpr', dpr);
+            var userAgent = navigator.userAgent;
+            if (userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || userAgent.match(/Android/i)) {
+                fontSize = document.documentElement.clientWidth / 7.5 * 2;
+                if (fontSize < 100) {
+                    fontSize = 100;
+                } else if (fontSize > 150) {
+                    fontSize = 150;
+                }
+                return document.documentElement.style.fontSize = fontSize + 'px';
+            }
+            document.documentElement.style.fontSize = '100px';
+        })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script defer src="https://static.yunzhijia.com/public/js/dataly.js"></script>
+    <script>
+        var _dataly = _dataly || []
+        _dataly.push(["_setAccount" , "mywork"])
+    </script>
+  </body>
+</html>

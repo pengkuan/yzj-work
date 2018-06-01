@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+        window.timePoints = {htmlStart: Date.now()}
+    </script>
+    <meta charset="utf-8">
+    <title>时间助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <script>
+        (function () {
+            var dpr = window.devicePixelRatio;
+            var fontSize;
+            if (dpr >= 1.5) dpr = 2;
+            document.documentElement.setAttribute('data-dpr', dpr);
+            var userAgent = navigator.userAgent;
+            if (userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || userAgent.match(/Android/i)) {
+                fontSize = document.documentElement.clientWidth / 7.5 * 2;
+                if (fontSize < 100) {
+                    fontSize = 100;
+                } else if (fontSize > 150) {
+                    fontSize = 150;
+                }
+                return document.documentElement.style.fontSize = fontSize + 'px';
+            }
+            document.documentElement.style.fontSize = '100px';
+        })();
+    </script>
+  </head>
+  <body ondblclick='ondblclick()'>
+    <div id="app"></div>
+    <script>
+        // polyfill
+        Object.assign || (Object.assign = function assign (target) {
+            if (arguments.length >= 2) {
+                Array.prototype.slice.call(arguments, 1).forEach(function (src) {
+                    if (typeof src === 'object') {
+                        Object.keys(src).forEach(function (key) {
+                            target[key] = src[key];
+                        });
+                    }
+                });
+            }
+            return target;
+        });
+
+        // polyfill
+        Array.prototype.includes || (Array.prototype.includes = function includes(item) {
+            return this.some(function (n) {
+                return n === item;
+            });
+        });
+    </script>
+    <script src="static/qing/qing.js"></script>
+    <script>
+        document.addEventListener('QingReady', function () {
+            window.qing.config({
+                debug: false,
+                jsApiList: [
+                    'toast'
+                ],
+                jsEventList: ['appear', 'disappear']
+            })
+            window._isInited = true
+        })
+
+        var preTime = 0, nextTime
+        document.getElementsByTagName('body')[0].addEventListener('touchend', function (e) {
+            nextTime = new Date()
+            if(nextTime - preTime < 300){
+                e.preventDefault()
+                preTime = nextTime
+                return false
+            }else {
+                preTime = nextTime
+            }
+        }, false)
+
+    </script>
+    <!-- built files will be auto injected -->
+    <script defer src="https://static.yunzhijia.com/public/js/dataly.js"></script>
+    <script>
+        var _dataly = _dataly || []
+        _dataly.push(["_setAccount" , "mywork"])
+    </script>
+  </body>
+</html>

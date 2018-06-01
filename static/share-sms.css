@@ -1,0 +1,134 @@
+
+#tpl {
+    display: none;
+}
+body {
+    margin: 0;
+    padding: .65rem .54rem 0 .54rem;
+    font-size: .12rem;
+    background: url('./assets/sms/bg.png') center top no-repeat;
+    background-size: contain;
+    background-color: #79A7FF;
+    font-family: PingFangSC-Regular, 微软雅黑, 宋体, tahoma, arial, sans-serif;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        background-image: url('./assets/sms/bg@2x.png');
+    }
+}
+
+@media screen and (-webket-mix-device-pixel-ratio: 3) {
+    body {
+        background-image: url('./assets/sms/bg@3x.png');
+    }
+}
+
+.header {
+    height: 2.14rem;
+    padding: 0 .09rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    vertical-align: middle;
+    text-align: center;
+}
+.logo {
+    width: .59rem;
+    height: .59rem;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+}
+.desc {
+    padding: 0 .09rem;
+    margin: .07rem 0 .24rem 0;
+    height: .25rem;
+    font-size: .18rem;
+    font-weight: 200;
+    color: rgba(60,186,255,1);
+    line-height: .25rem;
+    font-family: PingFangSC-Semibold;
+    font-weight: bold;
+}
+.content {
+    font-weight: 200;
+    padding: 0 .09rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-box-pack: center;
+    box-pack: center;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    margin: 0;
+    padding: 0;
+    height: .63rem;
+    font-size: .15rem;
+    color: rgba(29,29,29,1);
+    line-height: .21rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+.infos {
+    height: 1.5rem;
+    padding: 0 .13rem;
+    box-sizing: border-box;
+    padding-top: .34rem;
+    color: #768893;
+    font-size: .13rem;
+    line-height: .13rem;
+}
+.task-item {
+    margin-bottom: .16rem;
+}
+.task-item .label {
+    display: inline-block;
+    width: .50rem;
+}
+.task-item.hide {
+    display: none;
+}
+.footer {
+    text-align: center;
+}
+.footer .btn{
+    margin-top: .90rem;
+    font-weight: 200;
+    display: block;
+    height: .44rem;
+    text-align: center;
+    background-color: #ea6950;
+    border: none;
+    box-shadow: 0px 1px 6px 0px rgba(42,81,174,0.39);
+    border-radius: 1.22rem;
+    font-size: .16rem;
+    color: #fff;
+    line-height: .44rem;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+.btn:link,
+.btn:visited
+.btn:hover,
+.btn:active {
+    text-decoration: none;
+    color: #fff;
+}
+.footer .company-logo {
+    display: inline-block;
+    margin-top: .15rem;
+    width: 1.32rem;
+    height: .16rem;
+    background: url('./assets/sms/logo.png') center center no-repeat;
+    background-size: contain;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .footer .company-logo {
+        background-image: url('./assets//sms/logo@2x.png')
+    }
+}
